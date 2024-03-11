@@ -39,8 +39,10 @@ user = "<YOUR_DATABASE_USER>"
 password = "<YOUR_DATABASE_PASSWORD>"
 database = "<YOUR_DATABASE_NAME>"
 ```
+These settings are crucial for connecting to OpenAI and the database.
 
 ### 4. Database Setup:
+Ensure your MySQL database is up and running. Execute the SQL commands found in 'src/database/schema.sql' to create the necessary database and tables:
 ```sql
 -- Create the database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS backtestdb;
@@ -48,6 +50,7 @@ USE backtestdb;
 
 -- SQL statements for creating tables...
 ```
+This step prepares the database structure for storing users, portfolios, and stock data.
 
 ### Launching the Application
 
