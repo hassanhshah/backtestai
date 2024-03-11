@@ -11,7 +11,7 @@ class PortfolioManager:
         self.cursor = self.db_connection.cursor()
         self.user_id = user_id
 
-    def get_stock_data(self, stock_name, start_date="2024-01-01", end_date=datetime.now().date()):
+    def get_stock_data(self, stock_name, start_date="2020-01-01", end_date=datetime.now().date()):
         stock = yf.Ticker(stock_name)
         df = stock.history(start=start_date, end=end_date)
         if df.empty:
@@ -170,7 +170,7 @@ class PortfolioManager:
                         start_date = (last_transaction_date + timedelta(days=1)).strftime('%Y-%m-%d')
                     else:
                         # If there's no transaction data, use a default start date
-                        start_date = "2024-01-01"
+                        start_date = "2020-01-01"
                     
                     stock_data = self.get_stock_data(stock_name, start_date, today.strftime('%Y-%m-%d'))
                     if not stock_data.empty:
