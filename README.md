@@ -1,4 +1,4 @@
-# Backtest AI
+# BacktestAI
 
 Welcome to Backtest AI, the  platform for simulating and refining investment strategies. With an intuitive interface and powerful tools, Backtest AI provides a comprehensive suite of features for both novice and experienced investors looking to test their investment strategies in a simulated environment.
 
