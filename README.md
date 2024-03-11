@@ -20,7 +20,7 @@ Trading Simulator: Backtest your investment strategies to gauge potential return
 ### 1. Clone the repository:
 ```bash
 git clone https://github.com/hassanhshah/backtestai.git
-cd backtest_ai_app
+cd backtestai
 ```
 
 ### 2. Install dependencies:
