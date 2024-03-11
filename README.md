@@ -59,12 +59,6 @@ streamlit run app.py
 ### 2. Access the Platform:
 Open the URL provided in the command line output in your web browser to interact with Backtest AI locally.
 
-
-
-
-
-4. Navigate to the provided URL in your web browser to access the Backtest AI platform locally.
-
 Running Backtest AI locally allows you to utilize your own database and hardware resources, offering a quicker response time and a more fluid user experience.
 
 ## Please Note
