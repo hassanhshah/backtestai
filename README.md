@@ -15,23 +15,53 @@ Portfolio Overview: Monitor and analyze the performance of your portfolios over 
 Trading Simulator: Backtest your investment strategies to gauge potential returns and refine your approach based on historical data.
 ![Trading](/images/trading_simulator.png)
 
-## Getting Started
+### Getting Started
 
-1. Clone the repository:
+### 1. Clone the repository:
 ```bash
 git clone https://github.com/hassanhshah/backtestai.git
 cd backtest_ai_app
 ```
 
-2. Install the necessary dependencies:
+### 2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Launch the application:
+### 3. Configure Application Secrets:
+Within the '.streamlit' subdirectory in the root directory, locate the 'secrets.toml' file. Fill in the following fields with your specific details:
+```python
+open_api_key = "<YOUR_API_KEY>"
+
+[mysql]
+host = "<YOUR_DATABASE_HOST>"
+user = "<YOUR_DATABASE_USER>"
+password = "<YOUR_DATABASE_PASSWORD>"
+database = "<YOUR_DATABASE_NAME>"
+```
+
+### 4. Database Setup:
+```sql
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS backtestdb;
+USE backtestdb;
+
+-- SQL statements for creating tables...
+```
+
+### Launching the Application
+
+### 1. Start the App:
 ```bash
 streamlit run app.py
 ```
+
+### 2. Access the Platform:
+Open the URL provided in the command line output in your web browser to interact with Backtest AI locally.
+
+
+
+
 
 4. Navigate to the provided URL in your web browser to access the Backtest AI platform locally.
 
@@ -39,8 +69,9 @@ Running Backtest AI locally allows you to utilize your own database and hardware
 
 ## Please Note
 
-The insights and simulations provided by Backtest AI are for educational purposes only and should not be construed as investment advice. Always conduct your own research or consult with a financial advisor before making investment decisions.
+* The insights and simulations provided by Backtest AI are for educational purposes only and should not be construed as investment advice.
+* Always conduct your own research or consult with a financial advisor before making investment decisions.
 
 ## What's Coming?
 
-Stay tuned for upcoming features, including customizable backtesting strategies using AI, to further enhance your investment decision-making process.
+* Stay tuned for upcoming features, including customizable backtesting strategies using AI, to further enhance your investment decision-making process.
