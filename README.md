@@ -28,7 +28,18 @@ cd backtest_ai_app
 pip install -r requirements.txt
 ```
 
-### 3. Configure Application Secrets:
+### 3. Database Setup:
+Ensure your MySQL database is up and running. Execute the SQL commands found in 'src/database/schema.sql' to create the necessary database and tables:
+```sql
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS backtestdb;
+USE backtestdb;
+
+-- SQL statements for creating tables...
+```
+This step prepares the database structure for storing users, portfolios, and stock data.
+
+### 4. Configure Application Secrets:
 Within the '.streamlit' subdirectory in the root directory, locate the 'secrets.toml' file. Fill in the following fields with your specific details:
 ```python
 open_api_key = "<YOUR_API_KEY>"
@@ -40,17 +51,6 @@ password = "<YOUR_DATABASE_PASSWORD>"
 database = "<YOUR_DATABASE_NAME>"
 ```
 These settings are crucial for connecting to OpenAI and the database.
-
-### 4. Database Setup:
-Ensure your MySQL database is up and running. Execute the SQL commands found in 'src/database/schema.sql' to create the necessary database and tables:
-```sql
--- Create the database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS backtestdb;
-USE backtestdb;
-
--- SQL statements for creating tables...
-```
-This step prepares the database structure for storing users, portfolios, and stock data.
 
 ### Launching the Application
 
