@@ -14,11 +14,18 @@ class PortfolioBuilder:
         with tab2:
             self.ai_portfolio_builder()
 
+    def reset_manual_portfolio(self):
+        st.session_state["manual_portfolio_name"] = ""
+        st.session_state["manual_portfolio_description"] = ""
+        st.session_state["manual_number_of_stocks"] = 1
+
     def manual_portfolio_builder(self):
         if "manual_portfolio_name" not in st.session_state:
             st.session_state["manual_portfolio_name"] = ""
         if "manual_portfolio_description" not in st.session_state:
             st.session_state["manual_portfolio_description"] = ""
+        if "manual_number_of_stocks" not in st.session_state:
+            st.session_state["manual_number_of_stocks"] = 1
     
         portfolio_name = st.text_input("Portfolio name:", key="manual_portfolio_name")
         portfolio_description = st.text_area("Portfolio description:", key="manual_portfolio_description",
@@ -59,33 +66,44 @@ class PortfolioBuilder:
                     st.error("Please enter a valid portfolio name and at least one valid stock.")
 
         with col2:
-            if st.button("Reset", key="reset_manual_portfolio"):
-                SessionUtils.reset_session_state()
+            if st.button("Reset", key="reset_manual_portfolio", on_click=self.reset_manual_portfolio):
+                pass
+
+    def reset_ai_portfolio(self):
+        st.session_state.user_request = ""
+        st.session_state.portfolio_generated = False
+        st.session_state.portfolio_displayed = False
+        st.session_state.save_toggle = False
+        st.session_state.portfolio_saved = False
 
     def ai_portfolio_builder(self):
         if 'user_request' not in st.session_state:
-            st.session_state.user_request = ""
+            st.session_state["user_request"] = ""
 
-        st.session_state.user_request = st.text_area(
+        user_request = st.text_area(
             "What kind of portfolio are you looking to construct?",
-            value=st.session_state.user_request,
-            help="Example: 'I want a portfolio focusing on renewable energy companies expected to grow in the next year.'"
+            help="Example: 'I want a portfolio focusing on renewable energy companies expected to grow in the next year.'",
+            key="user_request"
         )
+
         col1, col2 = st.columns([5, 1])
         with col1:
-            if st.button("Generate AI Portfolio", key="generate_portfolio"):
-                ai_response = self.ai_manager.create_ai_portfolio(st.session_state.user_request)
-                success, parsed_data = self.ai_manager.parse_ai_response(ai_response)
-                if success:
-                    st.session_state.parsed_data = parsed_data
-                    st.session_state.portfolio_generated = True
-                else:
-                    st.error("Failed to generate AI portfolio. Please reset and try again.")
-                    st.session_state.portfolio_generated = False
+            generate_button = st.button("Generate AI Portfolio", key="generate_portfolio")
+            if generate_button:
+                with st.spinner('Generating AI portfolio... Please wait.'):
+                    ai_response = self.ai_manager.create_ai_portfolio(user_request)
+                    success, parsed_data = self.ai_manager.parse_ai_response(ai_response)
+                    if success:
+                        st.session_state.parsed_data = parsed_data
+                        st.session_state.portfolio_generated = True
+                        st.success('AI portfolio generated successfully.')
+                    else:
+                        st.error("Failed to generate AI portfolio. Please reset and try again.")
+                        st.session_state.portfolio_generated = False
         
         with col2:
-            if st.button("Reset"):
-                SessionUtils.reset_session_state()
+            if st.button("Reset", key="reset_ai_portfolio", on_click=self.reset_ai_portfolio):
+                pass
 
         if 'portfolio_generated' in st.session_state and st.session_state.portfolio_generated:
             parsed_data = st.session_state.parsed_data

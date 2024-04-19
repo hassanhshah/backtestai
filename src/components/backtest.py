@@ -26,7 +26,7 @@ class BacktestBuilder:
             help="Choose one or more indicators to generate buy and sell actions based on historical data."
             )
 
-            start_date = st.date_input("Start Date", value=pd.to_datetime('2024-01-01').date(), min_value=pd.to_datetime("2020-01-01").date(), max_value=datetime.now().date())
+            start_date = st.date_input("Start Date", value=pd.to_datetime('2020-01-01').date(), min_value=pd.to_datetime("2020-01-01").date(), max_value=datetime.now().date())
             end_date = st.date_input("End Date", value=datetime.now().date(), min_value=pd.to_datetime("2020-01-01").date(), max_value=datetime.now().date())
             if st.button("Simulate"):
                 historical_data_list = self.backtest_manager.get_simulation_data(portfolio_name)

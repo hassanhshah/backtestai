@@ -1,12 +1,12 @@
-import openai
+from openai import OpenAI
 import time
 import streamlit as st
 
-openai.api_key = st.secrets["open_api_key"]
+client = OpenAI(api_key=st.secrets["open_api_key"])
 
 class AIManager:
     def create_ai_portfolio(self, user_request):
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
@@ -24,7 +24,7 @@ class AIManager:
             frequency_penalty=0,
             presence_penalty=0
         )
-        return response.choices[-1].message['content']
+        return response.choices[0].message.content
     
     def parse_ai_response(self, response):
         parsed_data = {}
