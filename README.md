@@ -2,7 +2,7 @@
 
 Welcome to Backtest AI, the  platform for simulating and refining investment strategies. With an intuitive interface and powerful tools, Backtest AI provides a comprehensive suite of features for both novice and experienced investors looking to test their investment strategies in a simulated environment.
 
-https://github.com/hassanhshah/backtestai/assets/98497536/cc378395-3a5c-452d-b9aa-8c128d4644ab
+https://github.com/hassanhshah/hassanhshah.github.io/assets/98497536/e2b1709c-c790-45c9-a54b-ddd50b9bc7eb
 
 
 
